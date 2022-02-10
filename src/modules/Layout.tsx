@@ -18,17 +18,12 @@ const Layout = () => {
     }
 
     const handleDelete = () => {
-        if (!dataId) return
         dispatch(deleteDataThunk(dataId))
         dispatch(loadDataThunk())
-        setDataId('')
     }
 
     const handleChangeCategory = (category: string) => {
-        if (!dataId) return
-        dispatch(updateDataThunk({dataId, category}))
-        dispatch(loadDataThunk())
-        setDataId('')
+        dispatch(updateDataThunk({dataId, category})).then(()=> dispatch(loadDataThunk()))
     }
 
     useEffect(() => {
